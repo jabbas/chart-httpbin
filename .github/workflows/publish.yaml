@@ -33,7 +33,6 @@ jobs:
 
       - name: Push to git
         run: |
-          git status
           git add repository
           git commit -m 'bumps chart repository'
           git push
