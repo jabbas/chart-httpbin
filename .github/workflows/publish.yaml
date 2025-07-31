@@ -1,0 +1,37 @@
+name: Package and deploy to GitHub Pages
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Configure git
+        run: |
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+
+      - name: Install helm
+        uses: azure/setup-helm@v4.3.0
+
+      - name: Build and update index
+        run: |
+          mkdir -p repository/ && cd repository
+          helm package ../
+          helm repo index . --url https://jabbas.github.io/chart-httpbin
+
+      - name: Push to git
+        run: |
+          git status
+          git add repository
+          git commit -m 'bumps chart repository'
+          git push
