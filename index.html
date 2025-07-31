@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Helm Repository</title>
+    <!-- Use Tailwind CSS for a clean and responsive design -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            color: #1f2937;
+        }
+        /* Custom styles for the pre and code blocks */
+        pre {
+            background-color: #1f2937;
+            color: #f9fafb;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+    <div class="max-w-4xl mx-auto bg-white p-6 md:p-10 rounded-2xl shadow-xl border border-gray-200">
+        <!-- Code Output Area -->
+        <div id="output-container" class="relative">
+            <pre><code id="yaml-code-output"></code></pre>
+        </div>
+
+        <!-- Status Message Area -->
+        <div id="status-message" class="mt-4 text-sm font-medium text-red-600 text-center"></div>
+    </div>
+
+    <script>
+        // Get references to DOM elements
+        const yamlCodeOutput = document.getElementById('yaml-code-output');
+        const statusMessage = document.getElementById('status-message');
+
+        // The yamlUrlDisplay element is no longer used, but kept for clarity.
+        // const yamlUrlDisplay = document.getElementById('yaml-url');
+
+        // === CONFIGURATION ===
+        // The URL is a relative path, assuming the file is in the same directory.
+        const yamlUrl = 'index.yaml';
+        // =====================
+
+        /**
+         * Fetches a YAML file from a URL and displays its raw content as code.
+         */
+        async function fetchAndDisplayYaml() {
+            yamlCodeOutput.textContent = 'Loading YAML...';
+            statusMessage.textContent = '';
+            // Update the display for the URL if needed.
+            // yamlUrlDisplay.textContent = yamlUrl;
+
+            try {
+                // Fetch the YAML content from the specified URL
+                const response = await fetch(yamlUrl);
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const rawYamlContent = await response.text();
+
+                // Display the raw YAML content in the code block
+                yamlCodeOutput.textContent = rawYamlContent;
+
+            } catch (error) {
+                // Display error message if fetching fails
+                yamlCodeOutput.textContent = '';
+                statusMessage.textContent = `Failed to load YAML: ${error.message}`;
+            }
+        }
+
+        // Run the fetch and display function when the window loads
+        window.onload = fetchAndDisplayYaml;
+    </script>
+</body>
+</html>

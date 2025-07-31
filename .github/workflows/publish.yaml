@@ -30,6 +30,7 @@ jobs:
           mkdir -p repository/ && cd repository
           helm package ../
           helm repo index . --url https://jabbas.github.io/chart-httpbin
+          cp ../index.html ./
 
       - name: Push to git
         run: |

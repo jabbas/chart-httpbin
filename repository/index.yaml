@@ -3,9 +3,9 @@ entries:
   httpbin:
   - apiVersion: v2
     appVersion: latest
-    created: "2025-07-31T21:04:25.029135673Z"
+    created: "2025-07-31T21:27:33.424562979Z"
     description: HTTP Request & Response Service
-    digest: c25236781d663f3ae3467b754025fa3f490e55f9dfc6824a1af8a50ff5c80591
+    digest: fefe9cd2052f48c131f72301524d28f8fb7a9f3714efbc9b6b2efa1a2e60ac8a
     name: httpbin
     type: application
     urls:
@@ -13,7 +13,7 @@ entries:
     version: 1.0.0
   - apiVersion: v2
     appVersion: latest
-    created: "2025-07-31T21:04:25.028572038Z"
+    created: "2025-07-31T21:27:33.424020316Z"
     description: HTTP Request & Response Service
     digest: b629ff37fa7c2fb7ef275579e8e7ebe3c1968993de3d7c8abf8bd05a8e5a3981
     name: httpbin
@@ -21,4 +21,4 @@ entries:
     urls:
     - https://jabbas.github.io/chart-httpbin/httpbin-0.1.0.tgz
     version: 0.1.0
-generated: "2025-07-31T21:04:25.027863953Z"
+generated: "2025-07-31T21:27:33.423353013Z"
