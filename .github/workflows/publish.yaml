@@ -8,6 +8,8 @@ jobs:
   build:
     permissions:
       contents: write
+      pages: write
+      id-token: write
     runs-on: ubuntu-latest
 
     steps:
@@ -35,3 +37,11 @@ jobs:
           git add repository
           git commit -m 'bumps chart repository'
           git push
+
+      - name: Upload GitHub Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'repository'
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
